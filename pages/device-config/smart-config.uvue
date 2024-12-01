@@ -1,0 +1,75 @@
+<template>
+	<!-- #ifdef APP -->
+	<scroll-view style="flex:1">
+	<!-- #endif -->
+	<view class="smart-config">
+		<ak-form ref="formRef" label-width="200rpx" @submit="submit">
+			<ak-form-item label="设备地址:">
+				<input v-model="ip" placeholder="请输入设备地址" />
+			</ak-form-item>
+			<ak-form-item label="SSID：">
+				<input v-model="ssid" placeholder="请输入SSID" />
+			</ak-form-item>
+			<ak-form-item label="BSSID：">
+				<input v-model="bassid" placeholder="请输入SSID" />
+			</ak-form-item>
+			<ak-form-item label="wifi密码:">
+				<input v-model="passwd" :password="true" placeholder="请输入wifi密码" />
+			</ak-form-item>
+			<ak-form-item label="发送方式：">
+				<ak-radio v-model="broadcast" name="broadcast" :options="radioOptions"></ak-radio>
+			</ak-form-item>
+			<ak-form-item label="">
+				<button type="primary" size="mini" form-type="submit">配网</button>
+			</ak-form-item>
+		</ak-form>
+	</view>
+	<!-- #ifdef APP -->
+	</scroll-view>
+	<!-- #endif -->
+</template>
+
+<script lang="uts">
+	import AkForm from '@/components/Form/ak-form.uvue'
+	import AkFormItem from '@/components/Form/ak-form-item.uvue'
+	import AkRadio from '@/components/Radio/ak-radio.uvue'
+	export default {
+		name: 'smart-config',
+		components: {
+			AkForm, AkFormItem, AkRadio
+		},
+		data() {
+			return {
+				ip: '',
+				ssid: '',
+				bassid: '',
+				passwd: '',
+				broadcast: 'gb',
+				radioOptions: [
+					{ label: '广播', value: 'gb', disabled: false },
+					{ label: '组播', value: 'zb', disabled: true },
+				]
+			}
+		},
+		onLoad() {
+			console.log(this.$refs, '--form')
+			// this.$refs.formRef
+		},
+		methods: {
+			submit() {
+				console.log('submit--')
+				console.log(this.broadcast, this.ip, '--sub')
+			}
+		}
+	}
+		
+</script>
+
+<style lang="scss">
+	.smart-config {
+		.ak-form {
+			margin: 10px;
+		}
+	}
+		
+</style>

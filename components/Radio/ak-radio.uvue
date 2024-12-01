@@ -1,0 +1,49 @@
+<template>
+	<radio-group :name="name" class="ak-radio flex-row" @change="onChange">
+		<radio 
+			:style="{ 'margin-left': idx != 0 ? '10px': ''}" 
+			class="radio-item" 
+			v-for="(item, idx) in curOpts" 
+			:key="idx" 
+			:checked="item.value == modelValue" 
+			:value="item.value"
+			:disabled="item.disabled"
+		>{{ item.label }}</radio>
+	</radio-group>
+</template>
+
+<script lang="uts">
+	type ItemType = { value : string; label : string, disabled: boolean }
+	export default {
+		props: {
+			
+			name: {
+				type: String,
+				default: ''
+			},
+			modelValue: {
+				type: [Number, String, Boolean],
+				default: ''
+			},
+			options: {
+				type: Array as PropType<Array<ItemType>>
+			}
+		},
+		computed: {
+			curOpts: (): ItemType[] => {
+				return JSON.parse<ItemType[]>(JSON.stringify(this.options)) as ItemType[]
+			} 
+		},
+		methods: {
+			onChange(e: UniRadioGroupChangeEvent) {
+				this.$emit('update:modelValue', e.detail.value)
+			}
+		}
+	}
+</script>
+
+<style>
+.ak-radio {
+	/* justify-content: space-between; */
+}
+</style>

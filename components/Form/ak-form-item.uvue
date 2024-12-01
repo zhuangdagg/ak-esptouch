@@ -1,0 +1,79 @@
+<template>
+	<view class="ak-form-item">
+		<text v-if="label" class="ak-form-item__label" :style="curLabelWidth">{{ label }}</text>
+		<view class="ak-form-item__contain"><slot></slot></view>
+	</view>
+</template>
+
+<script lang="uts">
+	import { h, inject } from 'vue'
+	export default {
+		props: {
+			label: {
+				type: String,
+				default: ''
+			},
+			labelWidth: {
+				type: String,
+				default: ''
+			},
+			required: {
+				type: Boolean,
+				default: false
+			}
+		},
+		data() {
+			return {
+				
+			}
+		},
+		computed: {
+			curLabelWidth: (): object => {
+				const _globalLableWidth = inject('form-label-width') as string
+				const width = (this.labelWidth != '') ? this.labelWidth : _globalLableWidth
+				return { width }
+			}
+		},
+		mounted() {
+			console.log()
+		},
+		
+		methods: {
+			
+		},
+		// setup(props: any, { slots }: any): () => VNode {
+		// 	return () => {
+		// 		return h('view', null, [
+		// 			h('text', {}, props),
+		// 			h('text', null, slots)
+		// 		])
+		// 	}
+		// },
+		// render(): VNode {
+		// 	return h('view', {
+		// 		class: 'ak-form-item'
+		// 	}, [
+		// 		this.label && h('text', {
+		// 			class: 'ak-form-item__label'
+		// 		}, this.label)
+		// 	])
+		// }
+	}
+</script>
+
+<style lang="scss">
+.ak-form-item {
+	display: flex;
+	flex-direction: row;
+	margin: 4px 0;
+	
+	&__label {
+		width: 100px;
+	}
+	
+	&__contain {
+		// margin-left: auto;
+		flex: 1;
+	}
+}
+</style>

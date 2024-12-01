@@ -1,0 +1,5 @@
+// import { useEspTouch } from '../../common/EspTouch.uts'
+
+export function useEspTouch() {
+	return 'web esp-touch'
+}

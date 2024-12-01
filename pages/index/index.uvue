@@ -1,0 +1,56 @@
+<template>
+	<view class="home">
+		<image class="logo" src="/static/logo.png"></image>
+		<view>
+			<text class="title">{{title}}</text>
+		</view>
+		<navigator style="flex:1;margin: 10px 0;" open-type="switchTab" url="/pages/device-config/smart-config">
+			<button type="primary" size="mini">智能配网</button>
+		</navigator>
+		
+	</view>
+</template>
+
+<script>
+	// #ifdef APP-ANDROID
+	// import { useEspTouch } from '@/uni_modules/blunt-esptouch';
+	// #endif
+	export default {
+		data() {
+			return {
+				title: 'Hello'
+			}
+		},
+		onLoad() {
+			// this.title = useEspTouch()
+			console.log(666, '--test')
+		},
+		methods: {
+			handleNav() {
+				uni.setNavigationBarTitle({ title: '666'})
+				uni.navigateTo({
+					url: '/pages/device-config/smart-config'
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	.home {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.logo {
+		height: 100px;
+		width: 100px;
+		margin: 100px auto 25px auto;
+	}
+
+	.title {
+		font-size: 18px;
+		color: #8f8f94;
+    text-align: center;
+	}
+</style>

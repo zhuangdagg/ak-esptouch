@@ -1,0 +1,32 @@
+<template>
+	<form class="ak-form">
+		<slot />
+	</form>
+</template>
+
+<script lang="uts">
+	import { h, provide } from 'vue'
+	export default {
+		props: {
+			labelWidth: {
+				type: String,
+				default: '100px'
+			}
+		},
+		provide: {
+			'form-label-width': this.labelWidth
+		},
+		methods: {
+			submit: function(...args: UniFormSubmitEvent[]) {
+				this.$emit('submit', ...args)
+			},
+			
+		}
+	}
+</script>
+
+<style>
+.ak-form {
+	display: flex;
+}
+</style>

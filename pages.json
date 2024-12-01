@@ -1,0 +1,59 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			// "^ak-(.*)": "@/components/**/ak-(.*).uvue"
+		}
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app x"
+			}
+		}, {
+			"path": "pages/device-config/device-config",
+			"style": {
+
+			}
+		},
+		{
+			"path": "pages/device-config/smart-config",
+			"style": {
+				"navigationBarTitleText": "智能配网"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app x",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "@tabBarColor",
+		"selectedColor": "@tabBarSelectedColor",
+		"borderStyle": "@tabBarBorderStyle",
+		"backgroundColor": "@tabBarBackgroundColor",
+		"list": [{
+				"text": "home",
+				"pagePath": "pages/index/index",
+				"iconPath": "@homeIconPath",
+				"selectedIconPath": "@homeSelectedIconPath"
+			},
+			{
+				"text": "配网",
+				"pagePath": "pages/device-config/smart-config",
+				"iconPath": "@netIconPath",
+				"selectedIconPath": "@netSelectedIconPath"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/device-config/device-config",
+				"iconPath": "@meIconPath",
+				"selectedIconPath": "@meSelectedIconPath"
+			}
+		]
+	}
+}
