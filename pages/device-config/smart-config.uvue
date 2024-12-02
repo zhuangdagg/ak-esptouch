@@ -30,6 +30,10 @@
 </template>
 
 <script lang="uts">
+	// #ifdef APP-ANDROID
+	import { EsptouchTask, UDPSocket } from '@/uni_modules/blunt-esptouch';
+	// #endif
+	
 	import AkForm from '@/components/Form/ak-form.uvue'
 	import AkFormItem from '@/components/Form/ak-form-item.uvue'
 	import AkRadio from '@/components/Radio/ak-radio.uvue'
@@ -54,11 +58,23 @@
 		onLoad() {
 			console.log(this.$refs, '--form')
 			// this.$refs.formRef
+			initUpd()
 		},
 		methods: {
 			submit() {
 				console.log('submit--')
 				console.log(this.broadcast, this.ip, '--sub')
+			},
+			async initUdp() {
+				const task = new EsptouchTask({
+					socketClient: UDPSocket,
+					ssid: '192.168.0.169'
+					password: '00000000'
+					bassid: ''
+					onSuccess: (e:any) => {}
+					onError: (e: any) => {}
+				})
+				await task.start()
 			}
 		}
 	}
