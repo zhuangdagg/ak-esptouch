@@ -1,8 +1,12 @@
 // import { WifiManager } from 'android.net.wifi'
+// import Context from 'java.'
 import InetAddress from 'java.net.InetAddress'
+import Inet4Address from 'java.net.Inet4Address'
 import NetworkInterface from 'java.net.NetworkInterface'
 import Collections from 'java.util.Collections'
 import ArrayList from 'java.util.ArrayList'
+
+import { WifiManager } from 'android.net.wifi'
 
 
 export function useWifi() {
@@ -10,9 +14,8 @@ export function useWifi() {
 		const interfaces : ArrayList<NetworkInterface> = Collections.list(NetworkInterface.getNetworkInterfaces())
 		interfaces.forEach((intf : NetworkInterface) => {
 			const addrs : ArrayList<InetAddress> = Collections.list(intf.getInetAddresses())
-			console.log(addrs)
-			addrs.forEach((addr : InetAddress) => {
-				if (!addr.isLoopbackAddress()) {
+			addrs.forEach((addr) => {
+				if (!addr.isLoopbackAddress() && addr instanceof Inet4Address) {
 					const ipAddress = addr.getHostAddress();
 					const mac = intf.getHardwareAddress()
 					console.log("IP Address: " + ipAddress + " MAC Address: " + mac);
@@ -21,4 +24,13 @@ export function useWifi() {
 		})
 	}
 	getInfo()
+	
+	const getWifi = () => {
+		// const wifi = new WifiManager()
+		// const wifi = WifiManager.getSystemService()
+		const ctx = UTSAndroid.getAppContext()
+		console.log(ctx?.getSystemService(ctx?.POWER_SERVICE), '--enable')
+	}
+	// getWifi()
+	
 }

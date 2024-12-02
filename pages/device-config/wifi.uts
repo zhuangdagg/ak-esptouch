@@ -1,0 +1,35 @@
+// import
+import { WifiOption, UniGetWifiListCallback, GetConnectedWifiOptions, UniWifiResult } from '../../uni_modules/uni-wifi/utssdk/interface'
+import { startWifi, getWifiList, onGetWifiList, getConnectedWifi } from '/uni_modules/uni-wifi/utssdk/app-android/index.uts'
+
+
+export function useWifi() {
+	const cb: UniGetWifiListCallback = (info) => { console.log(info)}
+	onGetWifiList(cb)
+	startWifi({
+		success: ():void => {
+			getWifiList({
+				success: (res) => {
+					console.log(res, 'list success')
+				}
+			} as WifiOption)
+		},
+		fail: () => {
+			console.log('fail')
+		},
+		complete: () => {
+			console.log('complete')
+		}
+	} as WifiOption);
+	
+}
+
+export const getWifiInfo = async () => {
+	return new Promise<UniWifiResult>((resolve, reject) => {
+		getConnectedWifi({
+			partialInfo: true,
+			success: resolve,
+			fail: reject
+		} as GetConnectedWifiOptions)
+	})
+}

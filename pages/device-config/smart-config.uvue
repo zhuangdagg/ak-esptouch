@@ -31,7 +31,8 @@
 
 <script lang="uts">
 	// #ifdef APP-ANDROID
-	import { useWifi } from './test'
+	import { useWifi as useTest } from './test'
+	import { useWifi, getWifiInfo } from './wifi.uts'
 	// import { EsptouchTask, UDPSocket } from '@/uni_modules/blunt-esptouch';
 	// #endif
 	
@@ -67,7 +68,12 @@
 				console.log(this.broadcast, this.ip, '--sub')
 			},
 			initUdp() {
-				useWifi()
+				useTest()
+				// useWifi()
+				
+				// getWifiInfo().then((res) => {
+				// 	console.log(res, '--info')
+				// })
 
 				// const task = new EsptouchTask({
 				// 	socketClient: UDPSocket,
