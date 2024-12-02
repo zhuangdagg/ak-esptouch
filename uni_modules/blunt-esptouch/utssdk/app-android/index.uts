@@ -6,12 +6,12 @@ import { Sleep } from '../../common/util.uts'
 class UDPSocket {
 	client: UDPServer;
 	
-	constructor(private listen=18266, private logger=console) {
+	constructor(private listen=18266) {
 		this.client = new UDPServer(this.listen)
-		this.logger.info("udp bind: " + listen)
+		// this.logger.info("udp bind: " + listen)
 	}
 	
-	getClient() {
+	getClient(): UDPServer {
 		return this.client
 	}
 	

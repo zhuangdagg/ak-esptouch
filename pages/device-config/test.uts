@@ -1,0 +1,24 @@
+// import { WifiManager } from 'android.net.wifi'
+import InetAddress from 'java.net.InetAddress'
+import NetworkInterface from 'java.net.NetworkInterface'
+import Collections from 'java.util.Collections'
+import ArrayList from 'java.util.ArrayList'
+
+
+export function useWifi() {
+	const getInfo = () => {
+		const interfaces : ArrayList<NetworkInterface> = Collections.list(NetworkInterface.getNetworkInterfaces())
+		interfaces.forEach((intf : NetworkInterface) => {
+			const addrs : ArrayList<InetAddress> = Collections.list(intf.getInetAddresses())
+			console.log(addrs)
+			addrs.forEach((addr : InetAddress) => {
+				if (!addr.isLoopbackAddress()) {
+					const ipAddress = addr.getHostAddress();
+					const mac = intf.getHardwareAddress()
+					console.log("IP Address: " + ipAddress + " MAC Address: " + mac);
+				}
+			})
+		})
+	}
+	getInfo()
+}

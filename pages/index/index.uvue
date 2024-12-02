@@ -23,7 +23,6 @@
 		},
 		onLoad() {
 			// this.title = useEspTouch()
-			console.log(666, '--test')
 		},
 		methods: {
 			handleNav() {

@@ -1,0 +1,6 @@
+import { WifiManager } from 'android.net.wifi'
+
+
+export function useWifi() {
+	return WifiManager
+}
