@@ -3,3 +3,5 @@ export type useEspTouch = () => string
 export class UDPSocket {}
 
 export class EsptouchTask {}
+
+export type getIP = () => string

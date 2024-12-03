@@ -1,0 +1,21 @@
+import Context from 'android.content.Context'
+import WifiManager from 'android.net.wifi.WifiManager'
+import WifiInfo from 'android.net.wifi.WifiInfo'
+
+export function getIP() {
+	// 具备了权限，继续前进
+	let wifiManager: WifiManager = UTSAndroid.getAppContext()!.getSystemService(Context.WIFI_SERVICE) as WifiManager
+	// 开启wifi
+	wifiManager.setWifiEnabled(true)
+	// 当前连接wifi信息
+	// @ts-ignore
+	let winfo = wifiManager.getConnectionInfo()
+	
+	console.log(winfo.toString())
+	
+	let ipAddress = winfo.getIpAddress()
+	const ip = ipAddress.toString()
+	console.log(ip, '--ip')
+	
+	return ip
+}

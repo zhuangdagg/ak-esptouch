@@ -2,6 +2,7 @@
 import { UDPServer } from './udp.uts'
 import { useEspTouch, EsptouchTask } from '../../common/EspTouch.uts'
 import { Sleep } from '../../common/util.uts'
+import { getIP } from './getIP.uts'
 
 class UDPSocket {
 	client: UDPServer;
@@ -42,4 +43,4 @@ class UDPSocket {
 
 
 
-export { useEspTouch, EsptouchTask, UDPSocket }
+export { useEspTouch, EsptouchTask, UDPSocket, getIP }
